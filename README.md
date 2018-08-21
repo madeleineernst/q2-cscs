@@ -2,9 +2,10 @@
 
 Once QIIME2 is [installed](https://docs.qiime2.org/2018.2/install/), and you activated your QIIME2 environment, you can install `q2-cscs` with:
 
-`conda install -c askerdb q2-cscs`
-
+```
+conda install -c askerdb q2-cscs 
 qiime dev refresh-cache
+```
 
 ## Why use the chemical structural and compositional similarity (CSCS) distance metric over traditional distance metrics for metabolomics data?
 
@@ -30,13 +31,13 @@ To calculate the chemical structural and compositional dissimilarity metric for 
 
 To run the example described here, download the feature and edges file at: [https://gnps.ucsd.edu/ProteoSAFe/status.jsp?task=5729dd0f7a47475abc879e164c237f56](https://gnps.ucsd.edu/ProteoSAFe/status.jsp?task=5729dd0f7a47475abc879e164c237f56)  
 
-Mass spectral data as well as associated metadata used here have been compiled from [van der Hooft et al. 2017](https://pubs.acs.org/doi/abs/10.1021/acs.analchem.7b01391)
+Mass spectral data as well as associated metadata used here have been compiled from [van der Hooft and co-workers 2017](https://pubs.acs.org/doi/abs/10.1021/acs.analchem.7b01391)
 
 ### Activate your qiime2 conda environment
 
 To start the analyses activate your qiime2 conda environment: 
 
-source activate qiime2-2018.4
+`source activate qiime2-2018.4`
 
 ### Convert your mass spectral feature table to the .qza format
 
@@ -44,22 +45,22 @@ Before you can calculate the chemical structural and compositional dissimilarity
 
 First, convert the .tsv feature table (GNPS_buckettable.tsv) to a .biom feature table (GNPS_buckettable.biom):
 
-biom convert -i GNPS_buckettable.tsv -o GNPS_buckettable.biom --table-type="OTU table" --to-hdf5
+`biom convert -i GNPS_buckettable.tsv -o GNPS_buckettable.biom --table-type="OTU table" --to-hdf5`
 
 Then convert the .biom feature table (GNPS_buckettable.biom) to a .qza feature table (GNPS_buckettable.qza):
 
-qiime tools import --type 'FeatureTable[Frequency]' --input-path GNPS_buckettable.biom --output-path GNPS_buckettable.qza
+`qiime tools import --type 'FeatureTable[Frequency]' --input-path GNPS_buckettable.biom --output-path GNPS_buckettable.qza`
 
 ### Compute the chemical structural and compositional dissimilarity metric for all pairs of samples in your feature table
 
 To compute the chemical structural and compositional dissimilarity metric for all pairs of samples in your feature table type:
 
-qiime cscs cscs --p-css-edges GNPS_edges.tsv --i-features GNPS_buckettable.qza --p-cosine-threshold 0.5 --p-normalization --output-dir out
+`qiime cscs cscs --p-css-edges GNPS_edges.tsv --i-features GNPS_buckettable.qza --p-cosine-threshold 0.5 --p-normalization --output-dir out`
 
 Besides the mass spectral feature table (GNPS_buckettable.qza) and the edges file (GNPS_edges.tsv), you can specify two parameters:
 
---p-cosine-threshold: Minimum cosine score that must occur between two features to be included in the calculation. All cosine scores below this threshold will be set to 0. Set this parameter to the same value as you specified during mass spectral molecular network analysis on GNPS in the “Min Pairs Cos” option, if you want to integrate structural relationships as displayed in your network. The default value is set to 0.6.
---p-normalization: This parameter will perform Total Ion Current (TIC) normalization of your feature table prior to calculating the chemical structural and compositional dissimilarity metric.
+`--p-cosine-threshold`: Minimum cosine score that must occur between two features to be included in the calculation. All cosine scores below this threshold will be set to 0. Set this parameter to the same value as you specified during mass spectral molecular network analysis on GNPS in the “Min Pairs Cos” option, if you want to integrate structural relationships as displayed in your network. The default value is set to 0.6.
+`--p-normalization`: This parameter will perform Total Ion Current (TIC) normalization of your feature table prior to calculating the chemical structural and compositional dissimilarity metric.
 
 Once the computation completed, you will find a distance matrix in the .qza format within the output directory you specified above (here ‘out’). You can use this distance matrix to visualize the chemical structural and compositional dissimilarity across your samples in an interactive PCoA space using [Emperor](https://academic.oup.com/gigascience/article-lookup/doi/10.1186/2047-217X-2-16).
 
@@ -67,15 +68,15 @@ Once the computation completed, you will find a distance matrix in the .qza form
 
 To create PCos from the chemical structural and compositional dissimilarity matrix type:
 
-qiime diversity pcoa --i-distance-matrix out/distance_matrix.qza --o-pcoa cscs_PCoA.qza
+`qiime diversity pcoa --i-distance-matrix out/distance_matrix.qza --o-pcoa cscs_PCoA.qza`
 
 To create an interactive ordination plot of the above created PCoA with integrated sample metadata, prepare a [metadata file] (https://docs.qiime2.org/2018.6/tutorials/metadata/). You can find a metadata file for this example dataset within the Example/ folder. Make sure that the Sample IDs provided in the metadata file correspond to the Sample IDs in your distance_matrix.qza file. Then type:
 
-qiime emperor plot --i-pcoa cscs_PCoA.qza --m-metadata-file MappingFile_UrineSamples.txt --o-visualization cscs_PCoA.qzv
+`qiime emperor plot --i-pcoa cscs_PCoA.qza --m-metadata-file MappingFile_UrineSamples.txt --o-visualization cscs_PCoA.qzv`
 
 To visualize the interactive PCoA type:
 
-qiime tools view cscs_PCoA.qzv
+`qiime tools view cscs_PCoA.qzv`
 
 Or drag and drop the cscs_PCoA.qzv file to:
 [https://view.qiime2.org/](https://view.qiime2.org/)
@@ -84,11 +85,13 @@ Or drag and drop the cscs_PCoA.qzv file to:
 
 If you want to compare the chemical structural and compositional distance to traditional distance metrics such as Bray-Curtis in PCoA space, you can calculate Bray-Curtis distances for the same feature table using qiime2:
 
+```
 qiime diversity beta --i-table GNPS_buckettable.qza  --p-metric braycurtis --o-distance-matrix braycurtis_GNPS_buckettable.qza
 
 qiime diversity pcoa --i-distance-matrix braycurtis_GNPS_buckettable.qza --o-pcoa braycurtis_PCoA.qza
 
 qiime emperor plot --i-pcoa braycurtis_PCoA.qza --m-metadata-file MappingFile_UrineSamples.txt --o-visualization braycurtis_PCoA.qzv
+```
 
 ![](Example/PCoAs_Urine.jpg)
 
