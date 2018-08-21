@@ -1,0 +1,38 @@
+package:
+  name: q2-cscs
+  version: "0.0.1"
+
+source:
+  path: .
+
+requirements:
+  build:
+    - python 3.5*
+    - setuptools
+
+build:
+  noarch: generic
+
+run:
+  - python 3.5*
+  - setuptools
+  - igraph
+  - numpy
+  - pandas
+  - scikit-bio
+  - qiime2
+  - q2-types
+  - q2-feature-table
+  - q2-metadata
+  - q2-emperor
+  - biom-format
+
+about:
+   home: https://github.com/madeleineernst/q2-cscs
+   license: MIT
+   license_file: LICENSE
+   summary: "An implementation of CSCS for qiime2"
+#extra:
+#  - maintainers:
+#    - Asker Brejnrod <asker.brejnrod@sund.ku.dk>
+#    - Madeleine Ernst <mernst@ucsd.edu>
