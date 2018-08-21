@@ -2,7 +2,7 @@
 
 Once QIIME2 is [installed](https://docs.qiime2.org/2018.2/install/), and you activated your QIIME2 environment, you can install `q2-cscs` with:
 
-conda install -c askerdb q2-cscs
+`conda install -c askerdb q2-cscs`
 
 qiime dev refresh-cache
 
@@ -11,7 +11,7 @@ qiime dev refresh-cache
 
 The chemical structural and compositional similarity (CSCS) is a measure of chemical similarity proposed by [Sedio and coworkers] (https://esajournals.onlinelibrary.wiley.com/doi/abs/10.1002/ecy.1689). It is a metric, which takes into account the chemical structural relatedness of the compounds detected and can be applied to metabolomics samples, which have been acquired on a tandem mass spectrometer (MS/MS) and submitted to mass spectral molecular networking ([Watrous et al., 2012](http://www.pnas.org/content/109/26/E1743.long); [Wang et al., 2016](https://www.nature.com/articles/nbt.3597)). Mass spectral molecular networks provide information about the structural relatedness of mass spectral features through a cosine score. This score is retrieved from a modified cosine calculation, taking into account the relative intensities of the fragment ions as well as the precursor m/z difference ([Watrous et al., 2012](http://www.pnas.org/content/109/26/E1743.long)). A) exemplifies a mass spectral molecular network. Nodes represent mass spectral features, whereas edges represent their structural relatedness (cosine score). CSCS integrates the cosine score into the compositional similarity calculation. For a detailed description of how the metric is calculated see [Sedio and coworkers] (https://esajournals.onlinelibrary.wiley.com/doi/abs/10.1002/ecy.1689). The distance matrix, which is computed through q2-cscs represents the chemical structural and compositional dissimilarity for all pairs of samples in a feature table and corresponds to 1-CSCS. 
 
-<img src="Example/PCoAs_UnitTest.jpeg">
+![](Example/PCoAs_UnitTest.jpg)
 
 Given a hypothetical dataset, comprising 6 Samples and a total of 10 mass spectral features with structural relatedness as depicted in A), CSCS depicts chemical differences between the samples more accurately (C) than the Bray-Curtis distance (B). Using CSCS samples sharing structurally related compounds (A) cluster more closely together in PCoA space. In contrast, using the Bray-Curtis distance, Samples 1 and 3, as well as Samples 4 and 5, can not be differentiated in PCoA space and samples sharing structurally related mass spectral features do not cluster.
 
@@ -26,7 +26,7 @@ The plugin generates one file:
 
 To calculate the chemical structural and compositional dissimilarity metric for all pairs of samples within your mass spectral feature table, you will need to download a mass spectral feature table as well as an edges file containing pairwise cosine scores for all features provided in the feature table. Both files can be downloaded from https://gnps.ucsd.edu/ after performing mass spectral molecular networking. On the GNPS Job Status page select the “Download Bucket Table” option. Both the feature table (2.) as well as the edges file (3.) are contained within the files and folders that will be downloaded:
 
-<img src="Example/GNPS_Download.png">
+![](Example/GNPS_Download.png)
 
 To run the example described here, download the feature and edges file at: [https://gnps.ucsd.edu/ProteoSAFe/status.jsp?task=5729dd0f7a47475abc879e164c237f56](https://gnps.ucsd.edu/ProteoSAFe/status.jsp?task=5729dd0f7a47475abc879e164c237f56)  
 
@@ -90,7 +90,7 @@ qiime diversity pcoa --i-distance-matrix braycurtis_GNPS_buckettable.qza --o-pco
 
 qiime emperor plot --i-pcoa braycurtis_PCoA.qza --m-metadata-file MappingFile_UrineSamples.txt --o-visualization braycurtis_PCoA.qzv
 
-<img src="Example/PCoAs_Urine.jpeg">
+![](Example/PCoAs_Urine.jpg)
 
 In our example, the chemical structural and compositional dissimilarity metric revealed a stronger age-dependent gradient of urine samples (B) when compared to the Bray-Curtis dissimilarity (A).
 
