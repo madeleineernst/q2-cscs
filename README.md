@@ -59,7 +59,7 @@ To compute the chemical structural and compositional dissimilarity metric for al
 
 Besides the mass spectral feature table (GNPS_buckettable.qza) and the edges file (GNPS_edges.tsv), you can specify two parameters:
 
-`--p-cosine-threshold`: Minimum cosine score that must occur between two features to be included in the calculation. All cosine scores below this threshold will be set to 0. Set this parameter to the same value as you specified during mass spectral molecular network analysis on GNPS in the “Min Pairs Cos” option, if you want to integrate structural relationships as displayed in your network. The default value is set to 0.6.
+`--p-cosine-threshold`: Minimum cosine score that must occur between two features to be included in the calculation. All cosine scores below this threshold will be set to 0. Set this parameter to the same value as you specified during mass spectral molecular network analysis on GNPS in the “Min Pairs Cos” option, if you want to integrate structural relationships as displayed in your network. The default value is set to 0.6.\
 `--p-normalization`: This parameter will perform Total Ion Current (TIC) normalization of your feature table prior to calculating the chemical structural and compositional dissimilarity metric.
 
 Once the computation completed, you will find a distance matrix in the .qza format within the output directory you specified above (here ‘out’). You can use this distance matrix to visualize the chemical structural and compositional dissimilarity across your samples in an interactive PCoA space using [Emperor](https://academic.oup.com/gigascience/article-lookup/doi/10.1186/2047-217X-2-16).
@@ -70,7 +70,7 @@ To create PCos from the chemical structural and compositional dissimilarity matr
 
 `qiime diversity pcoa --i-distance-matrix out/distance_matrix.qza --o-pcoa cscs_PCoA.qza`
 
-To create an interactive ordination plot of the above created PCoA with integrated sample metadata, prepare a [metadata file] (https://docs.qiime2.org/2018.6/tutorials/metadata/). You can find a metadata file for this example dataset within the Example/ folder. Make sure that the Sample IDs provided in the metadata file correspond to the Sample IDs in your distance_matrix.qza file. Then type:
+To create an interactive ordination plot of the above created PCoA with integrated sample metadata, prepare a [metadata file](https://docs.qiime2.org/2018.6/tutorials/metadata/). You can find a metadata file for this example dataset within the *Example* folder. Make sure that the Sample IDs provided in the metadata file correspond to the Sample IDs in your distance_matrix.qza file. Then type:
 
 `qiime emperor plot --i-pcoa cscs_PCoA.qza --m-metadata-file MappingFile_UrineSamples.txt --o-visualization cscs_PCoA.qzv`
 
