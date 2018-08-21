@@ -25,7 +25,7 @@ The plugin generates one file:
 
 ### Download mass spectral molecular network data from GNPS
 
-To calculate the chemical structural and compositional dissimilarity metric for all pairs of samples within your mass spectral feature table, you will need to download a mass spectral feature table as well as an edges file containing pairwise cosine scores for all features provided in the feature table. Both files can be downloaded from https://gnps.ucsd.edu/ after performing mass spectral molecular networking. On the GNPS Job Status page select the “Download Bucket Table” option. Both the feature table (2.) as well as the edges file (3.) are contained within the files and folders that will be downloaded:
+To calculate the chemical structural and compositional dissimilarity metric for all pairs of samples within your mass spectral feature table, you will need to download a mass spectral feature table as well as an edges file containing pairwise cosine scores for all features provided in the feature table. Both files can be downloaded from https://gnps.ucsd.edu/ after performing mass spectral molecular networking. On the GNPS Job Status page select the “Download Bucket Table” (1.) option. Both the feature table (2.) as well as the edges file (3.) are contained within the files and folders that will be downloaded:
 
 ![](Example/GNPS_Download.png)
 
