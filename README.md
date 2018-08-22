@@ -37,7 +37,7 @@ Mass spectral data as well as associated metadata used here have been compiled f
 
 To start the analyses activate your qiime2 conda environment: 
 
-`source activate qiime2-2018.4`
+`source activate qiime2-2018.6`
 
 ### Convert your mass spectral feature table to the .qza format
 
