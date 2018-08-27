@@ -5,13 +5,16 @@ This is a [QIIME 2](https://qiime2.org/) plugin computing the chemical structura
 ## Installation
 
 Once QIIME2 is [installed](https://docs.qiime2.org/2018.2/install/), activate your QIIME2 environment:
-
-`source activate qiime2-2018.6`
+```
+source activate qiime2-2018.6
+```
 
 and install the q2-cscs plugin with:
 
-`conda install -c askerdb q2-cscs` \
-`qiime dev refresh-cache`
+```
+conda install -c askerdb q2-cscs
+qiime dev refresh-cache
+```
 
 ## Why use the chemical structural and compositional similarity (CSCS) distance metric over traditional distance metrics for metabolomics data?
 
@@ -37,7 +40,9 @@ You can test whether the q2-cscs plugin is working properly, by calculating the 
 
 To start the analyses activate your qiime2 conda environment: 
 
-`source activate qiime2-2018.6`
+```
+source activate qiime2-2018.6
+```
 
 #### Download the mock dataset
 
@@ -100,7 +105,9 @@ wget https://raw.githubusercontent.com/madeleineernst/q2-cscs/master/Example/Map
 
 To start the analyses activate your qiime2 conda environment: 
 
-`source activate qiime2-2018.6`
+```
+source activate qiime2-2018.6
+```
 
 #### Convert your mass spectral feature table to the .qza format
 
@@ -157,7 +164,7 @@ Or drag and drop the cscs_PCoA.qzv file to:
 
 #### Compare the chemical structural and compositional dissimilarity to the Bray-Curtis dissimilarity
 
-If you want to compare the chemical structural and compositional distance to traditional distance metrics such as Bray-Curtis in PCoA space, you can calculate Bray-Curtis distances for the same feature table using qiime2:
+If you want to compare the chemical structural and compositional distance to traditional distance metrics such as Bray-Curtis in PCoA space, you can calculate Bray-Curtis distances for the same feature table using QIIME 2:
 
 ```
 qiime diversity beta --i-table GNPS_buckettable.qza  --p-metric braycurtis --o-distance-matrix braycurtis_GNPS_buckettable.qza
