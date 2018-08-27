@@ -178,5 +178,12 @@ qiime emperor plot --i-pcoa braycurtis_PCoA.qza --m-metadata-file MappingFile_Ur
 
 In our example, the chemical structural and compositional dissimilarity metric revealed a stronger age-dependent gradient of urine samples (B) when compared to the Bray-Curtis dissimilarity (A).
 
+To compare both metrics, you can also run a Mantel test and/or a Procrustes analysis:
+
+```
+qiime diversity mantel --i-dm1 cscs_distance_matrix.qza --i-dm2 braycurtis_GNPS_buckettable.qza --o-visualization mantel.qzv
+qiime diversity procrustes-analysis --i-reference braycurtis_PCoA.qza --i-other cscs_PCoA.qza --output-dir ./procrustes-out
+qiime emperor procrustes-plot --i-reference-pcoa procrustes-out/transformed_reference.qza --i-other-pcoa procrustes-out/transformed_other.qza --m-metadata-file MappingFile_UrineSamples.txt --o-visualization procrustes-out/plot.qzv
+```
 
 
