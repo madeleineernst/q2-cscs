@@ -10,10 +10,10 @@ Once QIIME2 is [installed](https://docs.qiime2.org/2018.2/install/), activate yo
 
 and install 'q2-cscs' with:
 
-```
+``
 conda install -c askerdb q2-cscs 
 qiime dev refresh-cache
-```
+``
 
 ## Why use the chemical structural and compositional similarity (CSCS) distance metric over traditional distance metrics for metabolomics data?
 
