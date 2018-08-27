@@ -1,6 +1,6 @@
 # Qiime 2 chemical structural and compositional similarity plugin for metabolomics data
 
-This is a [QIIME 2 plugin](https://qiime2.org/) computing the chemical structural and compositional dissimilarity metric in metabolomics data retrieved from [GNPS](https://gnps.ucsd.edu/).
+This is a [QIIME 2](https://qiime2.org/) plugin computing the chemical structural and compositional dissimilarity metric in metabolomics data retrieved from [GNPS](https://gnps.ucsd.edu/).
 
 ## Installation
 
@@ -8,7 +8,7 @@ Once QIIME2 is [installed](https://docs.qiime2.org/2018.2/install/), activate yo
 
 `source activate qiime2-2018.6`
 
-and install `q2-cscs` with:
+and install 'q2-cscs' with:
 
 ```
 conda install -c askerdb q2-cscs 
