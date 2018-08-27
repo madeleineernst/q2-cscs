@@ -10,10 +10,8 @@ Once QIIME2 is [installed](https://docs.qiime2.org/2018.2/install/), activate yo
 
 and install 'q2-cscs' with:
 
-``
-conda install -c askerdb q2-cscs 
-qiime dev refresh-cache
-``
+`conda install -c askerdb q2-cscs`
+`qiime dev refresh-cache`
 
 ## Why use the chemical structural and compositional similarity (CSCS) distance metric over traditional distance metrics for metabolomics data?
 
@@ -59,6 +57,13 @@ To compute the chemical structural and compositional dissimilarity metric for al
 
 The output file 'small_cscs_distance_matrix.qza' will contain the chemical structural and compositional dissimilarity metric for all pairs of samples within the mock dataset. You can open the 'small_cscs_distance_matrix.qza' file in a text editor (e.g. TextWrangler). The resulting distance-matrix should look as follows:
 
+|  | Sample1  | Sample2 | Sample3 | Sample4 | Sample5 | Sample6 |
+| Sample1   | 0     | 0    | 0    | 0    | 0    | 0    |
+| Sample2   | 0    | 0    | 0    | 0    | 0    | 0    |
+| Sample3   | 0    | 0    | 0    | 0    | 0    | 0    |
+| Sample4   | 0    | 0    | 0    | 0    | 0    | 0    |
+| Sample5   | 0    | 0    | 0    | 0    | 0    | 0    |
+| Sample6   | 0    | 0    | 0    | 0    | 0    | 0    |
 
 ### Real-world dataset
 
