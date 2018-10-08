@@ -20,7 +20,7 @@ plugin.methods.register_function(
     function=q2_cscs.q2_cscs.cscs,
     inputs={'features': FeatureTable[Frequency],
             },
-    parameters={'css_edges': qiime2.plugin.Str, 'normalization': qiime2.plugin.Bool, 'cosine_threshold': qiime2.plugin.Float % qiime2.plugin.Range(0., None)},
+    parameters={'css_edges': qiime2.plugin.Str, 'weighted': qiime2.plugin.Bool, 'normalization': qiime2.plugin.Bool, 'cosine_threshold': qiime2.plugin.Float % qiime2.plugin.Range(0., None)},
     outputs=[('distance_matrix', DistanceMatrix % Properties('phylogenetic'))],
     input_descriptions={
         'features': ('The feature table containing the samples over which the chemical structural and compositional dissimilarity metric '
