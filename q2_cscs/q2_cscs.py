@@ -15,18 +15,11 @@ import skbio
 import pandas as pd
 import biom
 from q2_types.feature_table import FeatureTable, Frequency
-from scipy.spatial.distance import squareform
-import pickle
 from multiprocessing import Process, Queue 
 from collections import defaultdict
 import itertools
-
 import scipy.sparse
 import pickle
-from scipy.sparse import dok_matrix
-import numpy as np
-import pandas as pd
-import itertools
 import time
 
 
@@ -52,7 +45,6 @@ def cscs(features: biom.Table, css_edges: str, cosine_threshold: float= 0.6, nor
     sample_names = features.ids()
     cscs = parallel_make_distance_matrix(features, edgesdok,  sample_names)
     cscs = 1 - cscs 
-    print(cscs)
     return(skbio.DistanceMatrix(cscs, ids = cscs.index))
 
 def compute_sum(sampleA, sampleB, edges):
