@@ -23,7 +23,7 @@ import pickle
 import time
 
 
-def cscs(features: biom.Table, css_edges: str, cosine_threshold: float= 0.6, normalization: bool = True, weighted: bool = True)-> skbio.DistanceMatrix:
+def cscs(features: biom.Table, css_edges: str, cosine_threshold: float= 0.6, normalization: bool = True, weighted: bool = True, cpus: int = 1, chunk: int = 10)-> skbio.DistanceMatrix:
     observationids = {x:index for index, x in enumerate(features.ids(axis='observation'))}
     edgesdok = dok_matrix((features.shape[0], features.shape[0]), dtype=np.float32)
     for line in open(css_edges, "r"):
@@ -40,10 +40,10 @@ def cscs(features: biom.Table, css_edges: str, cosine_threshold: float= 0.6, nor
     if normalization:
         features = features.norm(axis='sample', inplace=False)
     if weighted == False:
-        features = features.pa #TODO: make new option in cscs()
+        features = features.pa 
 
     sample_names = features.ids()
-    cscs = parallel_make_distance_matrix(features, edgesdok,  sample_names)
+    cscs = parallel_make_distance_matrix(features, edgesdok,  sample_names, cpus, chunk)
     cscs = 1 - cscs 
     return(skbio.DistanceMatrix(cscs, ids = cscs.index))
 
@@ -78,10 +78,10 @@ def split_every(n, iterable):
         yield piece
         piece = list(islice(i, n))
 
-def parallel_make_distance_matrix(features, edges,  sample_names):
+def parallel_make_distance_matrix(features, edges,  sample_names, cpus, chunk):
     #Parallel stuff
-    NUMBER_OF_PROCESSES = 8
-    work_chunk_size = 5
+    NUMBER_OF_PROCESSES = cpus
+    work_chunk_size = chunk
     
     # Create queues
     task_queue = Queue()
