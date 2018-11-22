@@ -10,7 +10,7 @@ import numpy as np
 from itertools import combinations,islice
 from skbio.stats.ordination import pcoa
 from skbio import DistanceMatrix
-from scipy.sparse import dok_matrix
+from scipy.sparse import dok_matrix,csc_matrix
 import skbio
 import pandas as pd
 import biom
@@ -35,7 +35,8 @@ def cscs(features: biom.Table, css_edges: str, cosine_threshold: float= 0.6, nor
         else:
             edgesdok[observationids[linesplit[0]], observationids[linesplit[1]]] = float(linesplit[4])
             edgesdok[observationids[linesplit[1]], observationids[linesplit[0]]] = float(linesplit[4])
-        edgesdok.setdiag(1)
+    edgesdok.setdiag(1)
+
 
     if normalization:
         features = features.norm(axis='sample', inplace=False)
@@ -43,6 +44,7 @@ def cscs(features: biom.Table, css_edges: str, cosine_threshold: float= 0.6, nor
         features = features.pa 
 
     sample_names = features.ids()
+
     cscs = parallel_make_distance_matrix(features, edgesdok,  sample_names, cpus, chunk)
     cscs = 1 - cscs 
     return(skbio.DistanceMatrix(cscs, ids = cscs.index))
@@ -58,10 +60,11 @@ def compute_sum(sampleA, sampleB, edges):
 def single_distance(sampleA, sampleB, edges):
     """ Compute the distance between one pair of samples
     """
+    start = time.time()
     cssab = compute_sum(sampleA, sampleB, edges)
     cssaa = compute_sum(sampleA, sampleA, edges)
     cssbb = compute_sum(sampleB, sampleB, edges)
-
+    new = time.time()
     return(cssab/max(cssaa, cssbb))
 
 def worker(input, output, edges):
